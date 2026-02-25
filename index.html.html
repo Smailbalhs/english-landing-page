@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altwise Global Ltd — Parlez Anglais avec Assurance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f5f0e8;
+    --warm: #f0ebe0;
+    --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --rust: #c44b2b;
+    --text-muted: #6b6457;
+    --border: rgba(13,13,13,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(245,240,232,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .logo span { color: var(--gold); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    padding: 0.6rem 1.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--rust); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vw 4vw 6vw 8vw;
+    position: relative;
+  }
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 30px; height: 1px;
+    background: var(--rust);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+    line-height: 1.1;
+    font-weight: 900;
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.25s forwards;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    max-width: 440px;
+    margin-bottom: 2.4rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 500; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--rust);
+    color: white;
+    padding: 1.1rem 2.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 4px 4px 0 var(--gold);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s forwards;
+  }
+  .btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--gold);
+  }
+  .trust-note {
+    margin-top: 1.2rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vw;
+    position: relative;
+  }
+  .hero-visual {
+    width: min(420px, 90%);
+    aspect-ratio: 3/4;
+    background: var(--ink);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.4s forwards;
+  }
+  .hero-visual::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 20rem;
+    color: rgba(201,168,76,0.12);
+    position: absolute;
+    top: -3rem; left: -1rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-visual-accent {
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%; height: 45%;
+    background: var(--gold);
+    opacity: 0.15;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+  }
+  .hero-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: white;
+    line-height: 1.35;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-quote-sub {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+  .decoration-line {
+    position: absolute;
+    right: -60px; top: 50%;
+    width: 120px; height: 1px;
+    background: var(--gold);
+    opacity: 0.4;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 7rem 8vw;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  /* ── METHOD ── */
+  .method { background: var(--warm); }
+  .method-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .method-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-bottom: 2rem;
+  }
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .feature {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.5rem;
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    transition: transform 0.2s;
+  }
+  .feature:hover { transform: translateX(4px); }
+  .feature-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .feature h3 {
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+  }
+  .feature p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .method-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 1rem;
+  }
+  .stat-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--ink);
+  }
+  .stat-big span { color: var(--gold); }
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 280px;
+  }
+  .stat-divider {
+    width: 60px; height: 2px;
+    background: var(--gold);
+    margin: 1rem 0;
+  }
+
+  /* ── PRICING ── */
+  .pricing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+  .pricing-intro {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 400px;
+    line-height: 1.8;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 900px;
+  }
+  .card {
+    padding: 2.5rem;
+    border: 1.5px solid var(--border);
+    background: white;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
+  .card.featured {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .card-badge {
+    position: absolute;
+    top: -1px; right: 2rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    font-weight: 500;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .card-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+  }
+  .card.featured .card-subtitle { color: var(--gold-light); }
+  .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .price-unit {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .card.featured .price-unit { color: rgba(255,255,255,0.55); }
+  .price-detail {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .card.featured .price-detail { color: rgba(255,255,255,0.7); }
+  .price-per-hour {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .price-per-hour span { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.1rem; }
+  .card-cta {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    margin-top: 1.5rem;
+  }
+  .card:not(.featured) .card-cta {
+    background: var(--ink);
+    color: white;
+  }
+  .card:not(.featured) .card-cta:hover { background: var(--rust); }
+  .card.featured .card-cta {
+    background: var(--gold);
+    color: var(--ink);
+  }
+  .card.featured .card-cta:hover { background: var(--gold-light); }
+  .card-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 1rem;
+  }
+  .card.featured .card-note { color: rgba(255,255,255,0.45); }
+
+  /* ── DIFFERENTIATOR ── */
+  .diff { background: var(--ink); color: white; }
+  .diff h2 { color: white; }
+  .diff .section-label { color: var(--gold); }
+  .diff .section-label::after { background: var(--gold); }
+  .diff-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .quote-block {
+    position: relative;
+    padding: 3rem;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+  .quote-block::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -1.5rem; left: 1.5rem;
+    line-height: 1;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 1;
+  }
+  .quote-accent {
+    width: 40px; height: 2px;
+    background: var(--gold);
+    margin-top: 2rem;
+  }
+  .diff-points {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .diff-point {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .diff-icon {
+    width: 2.5rem; height: 2.5rem;
+    min-width: 2.5rem;
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--gold);
+  }
+  .diff-text h4 {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+    color: white;
+  }
+  .diff-text p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-section {
+    text-align: center;
+    padding: 8rem 5vw;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'SPEAK';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(6rem, 18vw, 18rem);
+    font-weight: 900;
+    color: rgba(201,168,76,0.06);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .cta-section .section-label { justify-content: center; }
+  .cta-section .section-label::after { display: none; }
+  .cta-section .section-label::before {
+    content: '';
+    flex: 0; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .cta-section h2 {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+  }
+  .cta-section p {
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .btn-ghost {
+    display: inline-block;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 1rem 2.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 1rem;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: var(--ink); color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2rem 5vw;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    .hero-left { padding: 5rem 7vw 4rem; }
+    .method-grid, .diff-inner, .cards { grid-template-columns: 1fr; }
+    .method-stats { flex-direction: row; flex-wrap: wrap; }
+    section { padding: 5rem 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Altwise <span>Global</span> Ltd</div>
+  <a href="#essai" class="nav-cta">Essai Gratuit</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Cours particuliers d'anglais</div>
+    <h1>Parlez anglais<br>avec <em>assurance</em></h1>
+    <p class="hero-sub">Des cours conçus pour les adultes qui veulent <strong>enfin s'exprimer avec fluidité.</strong> 100% pratique, 0% théorie inutile.</p>
+    <a href="#essai" class="btn-primary" id="essai">Je réserve ma session d'essai gratuite</a>
+    <p class="trust-note">✓ Aucune carte requise &nbsp;·&nbsp; ✓ Première session offerte</p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-visual-accent"></div>
+      <div class="hero-quote">"On parle, on se trompe, on corrige et on progresse."</div>
+      <div class="hero-quote-sub">La méthode 100% Speaking</div>
+    </div>
+    <div class="decoration-line"></div>
+  </div>
+</div>
+
+<!-- METHOD -->
+<section class="method">
+  <div class="section-label">Notre Approche</div>
+  <h2>La Méthode<br>"100% Speaking"</h2>
+  <div class="method-grid">
+    <div>
+      <p class="method-desc">Pourquoi passer des heures sur de la grammaire théorique ? Notre approche est directe, efficace et taillée pour les adultes qui ont une vie bien remplie.</p>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="feature-num">01</div>
+          <div>
+            <h3>Cours Individuels (1-on-1)</h3>
+            <p>Vous avez 100% du temps de parole. Pas de groupe, pas de dilution — chaque minute vous appartient.</p>
+          </div>
+        </div>
+        <div class="feature reveal">
+          <div class="feature-num">02</div>
+          <div>
+            <h3>Spécial Adultes</h3>
+            <p>Des sujets concrets qui vous servent dans la vraie vie : travail, voyage, conversations sociales.</p>
+          </div>
+        </div>
+        <div class="feature reveal">
+          <div class="feature-num">03</div>
+          <div>
+            <h3>Flexibilité Totale</h3>
+            <p>2 à 3 sessions par semaine selon vos disponibilités. Votre emploi du temps, vos règles.</p>
+          </div>
+        </div>
+        <div class="feature reveal">
+          <div class="feature-num">04</div>
+          <div>
+            <h3>Apprentissage Naturel</h3>
+            <p>Progressez par la pratique, comme si vous étiez en immersion totale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="method-stats reveal">
+      <div>
+        <div class="stat-big">100<span>%</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-label">Du temps de parole vous est consacré à chaque session. Pas de cours magistral.</div>
+      </div>
+      <div>
+        <div class="stat-big">0<span>%</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat-label">De théorie inutile. On pratique dès la première minute de votre premier cours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section>
+  <div class="pricing-header">
+    <div>
+      <div class="section-label">Tarifs Transparents</div>
+      <h2>Investissez dans<br>votre futur</h2>
+    </div>
+    <p class="pricing-intro">Sans vous ruiner. Des formules flexibles conçues pour s'adapter à votre rythme et à vos ambitions.</p>
+  </div>
+  <div class="cards reveal">
+    <div class="card">
+      <div class="card-title">Formule Liberté</div>
+      <div class="card-subtitle">1 mois · Coup de boost</div>
+      <div class="price">144 €</div>
+      <div class="price-unit">/ mois</div>
+      <div class="price-detail">8 heures de coaching individuel</div>
+      <div class="price-per-hour">Soit <span>18 €</span> l'heure</div>
+      <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7">Idéal pour un coup de boost rapide. Volume : 8h de cours, fréquence 2 séances/semaine.</p>
+      <a href="#essai" class="card-cta">Choisir cette formule</a>
+      <p class="card-note">* Première session offerte incluse</p>
+    </div>
+    <div class="card featured">
+      <div class="card-badge">Meilleur choix</div>
+      <div class="card-title">Formule Immersion</div>
+      <div class="card-subtitle">3 mois · Meilleur rapport qualité/prix</div>
+      <div class="price">349 €</div>
+      <div class="price-unit">pour le trimestre</div>
+      <div class="price-detail">24 heures de coaching individuel</div>
+      <div class="price-per-hour">Soit seulement <span>14 €</span> l'heure</div>
+      <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.7">La progression la plus solide. Volume : 12h/mois, fréquence 3 séances/semaine.</p>
+      <a href="#essai" class="card-cta">Choisir cette formule</a>
+      <p class="card-note">* Première session offerte incluse</p>
+    </div>
+  </div>
+  <p style="margin-top:2rem;font-size:0.85rem;color:var(--text-muted)">Format : En ligne, avec un professeur dédié qui se concentre exclusivement sur vos besoins.</p>
+</section>
+
+<!-- DIFF -->
+<section class="diff">
+  <div class="section-label">Ce Qui Nous Différencie</div>
+  <h2>Une approche<br>libératrice</h2>
+  <div class="diff-inner">
+    <div class="quote-block reveal">
+      <p class="quote-text">"Contrairement aux cours classiques, ici on ne remplit pas des cahiers d'exercices. On parle, on se trompe, on corrige et on progresse. C'est libérateur !"</p>
+      <div class="quote-accent"></div>
+    </div>
+    <div class="diff-points reveal">
+      <div class="diff-point">
+        <div class="diff-icon">🗣</div>
+        <div class="diff-text">
+          <h4>Parler, pas mémoriser</h4>
+          <p>Chaque session est une vraie conversation. Pas de conjugaisons à apprendre par cœur hors contexte.</p>
+        </div>
+      </div>
+      <div class="diff-point">
+        <div class="diff-icon">🎯</div>
+        <div class="diff-text">
+          <h4>Programme sur mesure</h4>
+          <p>Votre professeur s'adapte à vos objectifs : présentation pro, voyage, vie sociale.</p>
+        </div>
+      </div>
+      <div class="diff-point">
+        <div class="diff-icon">🌐</div>
+        <div class="diff-text">
+          <h4>100% en ligne</h4>
+          <p>Depuis chez vous, au bureau, en déplacement. La salle de classe vient à vous.</p>
+        </div>
+      </div>
+      <div class="diff-point">
+        <div class="diff-icon">⚡</div>
+        <div class="diff-text">
+          <h4>Résultats rapides</h4>
+          <p>Nos élèves constatent une progression dès les premières semaines — pas les premières années.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="section-label">Première Session Offerte</div>
+  <h2>Pourquoi attendre ?<br>Débloquez votre anglais.</h2>
+  <p>Nous sommes tellement convaincus par notre méthode que nous vous offrons une session de rencontre et de diagnostic gratuite. C'est le moment.</p>
+  <a href="#essai" class="btn-primary">Commencer maintenant (gratuit)</a>
+  <a href="#method" class="btn-ghost" style="margin-top:1rem;display:inline-block">En savoir plus</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>ALTWISE GLOBAL LTD</span> · Tous droits réservés</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
